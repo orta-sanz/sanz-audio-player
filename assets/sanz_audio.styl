@@ -1,0 +1,53 @@
+@import 'nib'
+
+circle(size)
+	width unit(size, px)
+	height unit(size, px)
+	border-radius unit(size / 2, px)
+
+.sanz_audio
+	width 300px
+	display flex
+	user-select none
+	flex-flow row wrap
+	justify-content space-around
+
+	*
+		user-select none
+
+	.sanz_audio_controls.volume, .sanz_audio_controls.fa-play, .sanz_audio_controls.fa-pause
+		cursor pointer
+		
+	.sanz_audio_controls.volume, .sanz_audio_controls.fa-play, .sanz_audio_controls.fa-pause
+		width 10px
+
+	.sanz_audio_time, .sanz_audio_controls
+		margin auto
+
+	.fa:not(.fa-play):not(.fa-pause)
+		font-size 20px
+
+	.sanz_audio_controls
+		&.volume_control, &.progress
+			.progress_control, .volume_control_toggler
+				circle(10)
+				cursor move
+				background-color #FFF
+				absolute top 50% left 0
+				border 1px solid #EF4747
+				transform translate(0, -50%)
+
+		&.volume_control
+			width 20%
+			height 2px
+			position relative
+			background-color #EF4747
+
+			.volume_control_toggler
+				left 100%
+
+		&.progress
+			width 30%
+			height 2px
+			position relative
+			background-color #EF4747
