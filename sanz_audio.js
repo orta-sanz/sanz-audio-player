@@ -3,6 +3,8 @@
      * @author Alejandro Orta (orta.sanz.93@gmail.com)
      * @desc This small plugins reate a new audio element
      *       from the original but much more customizable.
+     *
+     * @version 0.0.2
      */
 
 	var utils = {
@@ -124,6 +126,13 @@
 					controls.audioToggle.css('left', '100%');
 				}
 				updateAudioIcon(player.prop('volume'));
+			});
+
+			// On End event
+			player.on('ended', function() {
+				controls.timeToggle.css('left', '0px');
+				newPlayer.find('.sanz_audio_time').html(length);
+				controls.play.removeClass('fa-pause').addClass('fa-play');
 			});
 
 			// Makes timeline and audio draggable
