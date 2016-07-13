@@ -34,7 +34,7 @@
 		pointerEventToXY: function(e) {
 			var out = { x : 0, y : 0 };
 			if(e.type == 'touchstart' || e.type == 'touchmove' || e.type == 'touchend' || e.type == 'touchcancel') {
-				var touch = e.originalEvent.touches[0] || e.originalEvent.changedTouches[0];
+				var touch = e.touches[0] || e.changedTouches[0];
 				out.x = touch.pageX;
 				out.y = touch.pageY;
 			}
@@ -213,9 +213,11 @@
 
 			function mouseUp(e) {
 				if (onPlayHead == true) {
+					var event = 'ontouchstart' in window ? 'touchmove' : 'mousemove';
+
 					if(touchFlag == 'audio') {
 						moveAudioAhead(e);
-						window.removeEventListener('mousemove', moveAudioAhead, true);
+						window.removeEventListener(event, moveAudioAhead, true);
 
 						var newVolume = utils.clickPercent(e, controls.audio);
 
@@ -233,7 +235,7 @@
 					}
 					else if(touchFlag == 'time') {
 						moveTimelineAhead(e);
-						window.removeEventListener('mousemove', moveTimelineAhead, true);
+						window.removeEventListener(event, moveTimelineAhead, true);
 						player.prop('currentTime', duration * utils.clickPercent(e, controls.timeline));
 					}
 				}
