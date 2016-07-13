@@ -34,9 +34,17 @@
 		pointerEventToXY: function(e) {
 			var out = { x : 0, y : 0 };
 			if(e.type == 'touchstart' || e.type == 'touchmove' || e.type == 'touchend' || e.type == 'touchcancel') {
-				var touch = e.touches[0] || e.changedTouches[0];
-				out.x = touch.pageX;
-				out.y = touch.pageY;
+				if(e.touches || e.changedTouches || e.originalEvent.touches || e.originalEvent.changedTouches) {
+					if(e.touches && e.touches[0]) {
+						var touch = e.touches[0]
+					}
+					else {
+						var touch = e.originalEvent.changedTouches[0];
+					}
+
+					out.x = touch.pageX;
+					out.y = touch.pageY;
+				}
 			}
 			else {
 				out.x = e.pageX;
