@@ -81,6 +81,9 @@
 				'audioIcon'   : newPlayer.find('.sanz_audio_controls.volume')
 			};
 
+			// Hotfix for the volume control style
+			controls.audioToggle.css('left', controls.audio.outerWidth() - controls.audioToggle.outerWidth() + 'px');
+
 			// Append the total duration of the audio
 			var length = utils.getParsedLength(duration);
 			duration && newPlayer.find('.sanz_audio_time').html(length);
