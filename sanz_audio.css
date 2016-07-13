@@ -1,9 +1,3 @@
-/**
- * @author Alejandro Orta (orta.sanz.93@gmail.com)
- * @desc This small plugins reate a new audio element
- *       from the original but much more customizable.
- */
-
 .sanz_audio {
   width: 300px;
   display: -webkit-box;
@@ -43,10 +37,12 @@
 .sanz_audio .sanz_audio_controls.fa-pause {
   cursor: pointer;
 }
-.sanz_audio .sanz_audio_controls.volume,
 .sanz_audio .sanz_audio_controls.fa-play,
 .sanz_audio .sanz_audio_controls.fa-pause {
   width: 10px;
+}
+.sanz_audio .sanz_audio_controls.volume {
+  width: 20px;
 }
 .sanz_audio .sanz_audio_time,
 .sanz_audio .sanz_audio_controls {
