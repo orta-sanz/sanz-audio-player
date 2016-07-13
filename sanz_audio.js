@@ -4,7 +4,7 @@
      * @desc This small plugins reate a new audio element
      *       from the original but much more customizable.
      *
-     * @version 0.0.2.1
+     * @version 0.0.3
      */
 
 	var utils = {
@@ -49,6 +49,7 @@
 
 	$.fn.sanzAudio = function() {
 		var player   = $(this),
+			volume   = player.prop('volume'),
 			duration = player.prop('duration');
 
 		var callback = utils.once(initSanzPlayer);
@@ -118,14 +119,33 @@
 			// Mute and unmute event
 			controls.audioIcon.on('click', function(e) {
 				if(player.prop('volume') > 0) {
-					player.prop('volume', 0)
+					volume = player.prop('volume');
 					controls.audioToggle.css('left', '0px');
+
+					player.prop('volume', 0)
 				}
+				// Restore the last volume before mute
 				else {
-					player.prop('volume', 1)
-					controls.audioToggle.css('left', '');
-					controls.audioToggle.css('right', '0');
+					if(volume == 0) {
+						volume = 1;
+						player.prop('volume', 1);
+						controls.audioToggle.css('left', '');
+						controls.audioToggle.css('right', '0px');
+					}
+					else {
+						player.prop('volume', volume);
+
+						var width = controls.audio.width() * volume / 1;
+						if(width > controls.audio.width() || volume == 1) {
+							controls.audioToggle.css('left', '');
+							controls.audioToggle.css('right', '0px');
+						}
+						else {
+							controls.audioToggle.css('left', width + 'px');
+						}
+					}
 				}
+
 				updateAudioIcon(player.prop('volume'));
 			});
 
@@ -147,6 +167,7 @@
 				var newVolume = utils.clickPercent(event, controls.audio);
 				if(newVolume >= 0 && newVolume <= 1) {
 					player.prop('volume', newVolume);
+					volume = newVolume;
 					updateAudioIcon(newVolume);
 					moveAudioAhead(e);
 				}
@@ -229,6 +250,7 @@
 						}
 
 						if(newVolume >= 0 && newVolume <= 1) {
+							volume = newVolume;
 							updateAudioIcon(newVolume);
 							player.prop('volume', newVolume);
 						}
