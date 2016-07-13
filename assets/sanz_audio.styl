@@ -32,22 +32,24 @@ circle(size)
 
 	.sanz_audio_controls
 		&.volume_control, &.progress
-			.progress_control, .volume_control_toggler
+			.volume_control_toggler, .progress_control
 				circle(10)
 				cursor move
 				background-color #FFF
-				absolute top 50% left 0
 				border 1px solid #EF4747
 				transform translate(0, -50%)
+
+			.progress_control
+				absolute top 50% left 0
+
+			.volume_control_toggler
+				absolute top 50% right 0
 
 		&.volume_control
 			width 20%
 			height 2px
 			position relative
 			background-color #EF4747
-
-			.volume_control_toggler
-				left 100%
 
 		&.progress
 			width 30%

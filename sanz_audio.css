@@ -51,19 +51,16 @@
 .sanz_audio .fa:not(.fa-play):not(.fa-pause) {
   font-size: 20px;
 }
-.sanz_audio .sanz_audio_controls.volume_control .progress_control,
-.sanz_audio .sanz_audio_controls.progress .progress_control,
 .sanz_audio .sanz_audio_controls.volume_control .volume_control_toggler,
-.sanz_audio .sanz_audio_controls.progress .volume_control_toggler {
+.sanz_audio .sanz_audio_controls.progress .volume_control_toggler,
+.sanz_audio .sanz_audio_controls.volume_control .progress_control,
+.sanz_audio .sanz_audio_controls.progress .progress_control {
   width: 10px;
   height: 10px;
   -webkit-border-radius: 5px;
   border-radius: 5px;
   cursor: move;
   background-color: #fff;
-  position: absolute;
-  top: 50%;
-  left: 0;
   border: 1px solid #ef4747;
   -webkit-transform: translate(0, -50%);
   -moz-transform: translate(0, -50%);
@@ -71,14 +68,23 @@
   -ms-transform: translate(0, -50%);
   transform: translate(0, -50%);
 }
+.sanz_audio .sanz_audio_controls.volume_control .progress_control,
+.sanz_audio .sanz_audio_controls.progress .progress_control {
+  position: absolute;
+  top: 50%;
+  left: 0;
+}
+.sanz_audio .sanz_audio_controls.volume_control .volume_control_toggler,
+.sanz_audio .sanz_audio_controls.progress .volume_control_toggler {
+  position: absolute;
+  top: 50%;
+  right: 0;
+}
 .sanz_audio .sanz_audio_controls.volume_control {
   width: 20%;
   height: 2px;
   position: relative;
   background-color: #ef4747;
-}
-.sanz_audio .sanz_audio_controls.volume_control .volume_control_toggler {
-  left: 100%;
 }
 .sanz_audio .sanz_audio_controls.progress {
   width: 30%;

@@ -4,7 +4,7 @@
      * @desc This small plugins reate a new audio element
      *       from the original but much more customizable.
      *
-     * @version 0.0.2
+     * @version 0.0.2.1
      */
 
 	var utils = {
@@ -81,9 +81,6 @@
 				'audioIcon'   : newPlayer.find('.sanz_audio_controls.volume')
 			};
 
-			// Hotfix for the volume control style
-			controls.audioToggle.css('left', controls.audio.outerWidth() - controls.audioToggle.outerWidth() + 'px');
-
 			// Append the total duration of the audio
 			var length = utils.getParsedLength(duration);
 			duration && newPlayer.find('.sanz_audio_time').html(length);
@@ -126,7 +123,8 @@
 				}
 				else {
 					player.prop('volume', 1)
-					controls.audioToggle.css('left', '100%');
+					controls.audioToggle.css('left', '');
+					controls.audioToggle.css('right', '0');
 				}
 				updateAudioIcon(player.prop('volume'));
 			});
