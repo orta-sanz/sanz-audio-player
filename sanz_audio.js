@@ -1,7 +1,7 @@
 (function($) {
     /**
      * @author Alejandro Orta (orta.sanz.93@gmail.com)
-     * @desc This small plugins reate a new audio element
+     * @desc This small plugins creates a new audio element
      *       from the original but much more customizable.
      *
      * @version 0.0.3

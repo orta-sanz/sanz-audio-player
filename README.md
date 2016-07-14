@@ -4,13 +4,29 @@ With this small plugin (~9Kb) you will have at your disposal a fully customizabl
 
 ## Dependencies
 - jQuery
+- FontAwsome (this will be removed)
 
 ## Use
 Simple as select the audio element and call the `.sanzAudio()` function. You can see an example inside `index.html` file ;)
+
+```
+<audio class="audio-player" controls>
+	<source src="./audio/bensound-funnysong.mp3" type="audio/mp3">
+</audio>
+
+
+ <script>
+	 $('.audio-player').sanzAudio();
+
+	// You can use sanzAudio on multiple audio elements
+	$('.audio-player').each(function() {
+		$(this).sanzAudio();
+	});
+ </script>
+```
 
 ## ToDo
 - Better style and responsive.
 - PlayList option.
 - Add cool effects for the buttons.
-- Test and improve touch version.
 - etc.

@@ -6,14 +6,19 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 		<meta name="msapplication-tap-highlight" content="no">
 		<meta name="apple-mobile-web-app-capable" content="yes">
+
+		<style>
+			* {
+				font-family: Arial;
+			}
+		</style>
 	</head>
 
 	<body>
 		<h1>Sanz Audio Player</h1>
+		<hr>
 
-		<audio class="audio-player" controls>
-			<source src="./audio/bensound-dubstep.mp3" type="audio/mp3">
-		</audio>
+		<p>Drag and Drop ready!</p>
 
 		<audio class="audio-player" controls>
 			<source src="./audio/bensound-funnysong.mp3" type="audio/mp3">
@@ -25,9 +30,7 @@
 		<script src="./sanz_audio.js"></script>
 
 		<script>
-			$('.audio-player').each(function() {
-				$(this).sanzAudio();
-			});
+			$('.audio-player').sanzAudio();
 		</script>
 	</footer>
 </html>
