@@ -4,7 +4,7 @@
      * @desc This small plugins creates a new audio element
      *       from the original but much more customizable.
      *
-     * @version 0.0.3
+     * @version 0.0.4
      */
 
 	var utils = {
@@ -55,7 +55,14 @@
 		}
 	};
 
-	$.fn.sanzAudio = function() {
+	var defaults = {
+		audioControl : true,
+		volume : 1
+	};
+
+	$.fn.sanzAudio = function(opt) {
+		var options = $.extend({}, defaults, opt);
+
 		var player   = $(this),
 			volume   = player.prop('volume'),
 			duration = player.prop('duration');
@@ -71,8 +78,12 @@
 			newHtml += '<i class="sanz_audio_controls fa fa-play"></i>';
 			newHtml += '<div class="sanz_audio_controls progress"><span class="sanz_audio_controls progress_control"></span></div>';
 			newHtml += '<div class="sanz_audio_time">00:00</div>';
-			newHtml += '<div class="sanz_audio_controls volume"><i class="fa fa-volume-up"></i></div>';
-			newHtml += '<div class="sanz_audio_controls volume_control"><span class="volume_control_toggler"></span></div>';
+
+			if(options.audioControl) {
+				newHtml += '<div class="sanz_audio_controls volume"><i class="fa fa-volume-up"></i></div>';
+				newHtml += '<div class="sanz_audio_controls volume_control"><span class="volume_control_toggler"></span></div>';
+			}
+
 			newHtml += '</div>';
 
 			player.after(newHtml);
@@ -124,13 +135,28 @@
 				controls.timeToggle.css('left', percentage + '%')
 			});
 
+			// Set default Audio from opt
+			updateAudioIcon(options.volume);
+			if(options.volume > 1) {
+				player.prop('volume', 1);
+				controls.audioToggle.css('right', '0px');
+			}
+			else if(options.volume < 0) {
+				player.prop('volume', 0);
+				controls.audioToggle.css('left', '0px');
+			}
+			else {
+				player.prop('volume', options.volume);
+				var width = controls.audio.width() * options.volume / 1;
+				controls.audioToggle.css('left', width + 'px');
+			}
+
 			// Mute and unmute event
-			controls.audioIcon.on('click', function(e) {
+			options.audioControl && controls.audioIcon.on('click', function(e) {
 				if(player.prop('volume') > 0) {
+					player.prop('volume', 0);
 					volume = player.prop('volume');
 					controls.audioToggle.css('left', '0px');
-
-					player.prop('volume', 0)
 				}
 				// Restore the last volume before mute
 				else {
@@ -165,13 +191,13 @@
 			});
 
 			// Makes timeline and audio draggable
-			controls.audioToggle.on('touchstart mousedown', mouseDownAudio);
+			options.audioControl && controls.audioToggle.on('touchstart mousedown', mouseDownAudio);
 			controls.timeToggle.on('touchstart mousedown', mouseDownTimeline);
 
 			$(window).on('touchend mouseup', mouseUp);
 
 			// Makes audio clickable
-			controls.audio.on('click', function(e) {
+			options.audioControl && controls.audio.on('click', function(e) {
 				var newVolume = utils.clickPercent(event, controls.audio);
 				if(newVolume >= 0 && newVolume <= 1) {
 					player.prop('volume', newVolume);

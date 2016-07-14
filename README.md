@@ -10,23 +10,34 @@ With this small plugin (~9Kb) you will have at your disposal a fully customizabl
 - jQuery
 - FontAwsome (this will be removed)
 
+## Params
+You can use multiple params to personalize the Audio Player:
+
+- `audioControl` **Boolean** - Show or hide the Volume control.
+- `volume` **Int** - Set the default volume. Range between 0 - 1
+
+
 ## Use
+You will need both `sanz_audio.css` and `sanz_audio.js` inside your project.
+
 Simple as select the audio element and call the `.sanzAudio()` function. You can see an example inside `index.html` file ;)
 
-```
+```html
 <audio class="audio-player" controls>
 	<source src="./audio/bensound-funnysong.mp3" type="audio/mp3">
 </audio>
 
-
- <script>
-	 $('.audio-player').sanzAudio();
+<script>
+	$('.audio-player').sanzAudio({
+		audioControl : true,
+		volume : 0.7
+	});
 
 	// You can use sanzAudio on multiple audio elements
 	$('.audio-player').each(function() {
 		$(this).sanzAudio();
 	});
- </script>
+</script>
 ```
 
 ## ToDo
