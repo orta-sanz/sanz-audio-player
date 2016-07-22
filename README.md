@@ -8,7 +8,6 @@ With this small plugin (~9Kb) you will have at your disposal a fully customizabl
 
 ## Dependencies
 - jQuery
-- FontAwsome (this will be removed)
 
 ## Params
 You can use multiple params to personalize the Audio Player:
@@ -44,4 +43,6 @@ Simple as select the audio element and call the `.sanzAudio()` function. You can
 - Better style and responsive.
 - PlayList option.
 - Add cool effects for the buttons.
-- etc.
+
+****
+Thanks to **Saeed Alipoor** for his [Pure CSS Icons](https://github.com/saeedalipoor/icono)

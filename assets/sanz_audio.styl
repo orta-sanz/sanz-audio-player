@@ -1,5 +1,7 @@
 @import 'nib'
 
+@import './icono.css'
+
 circle(size)
 	width unit(size, px)
 	height unit(size, px)
@@ -15,20 +17,25 @@ circle(size)
 	*
 		user-select none
 
-	.sanz_audio_controls.volume, .sanz_audio_controls.fa-play, .sanz_audio_controls.fa-pause
+	.play-pause
 		cursor pointer
-
-	.sanz_audio_controls.fa-play, .sanz_audio_controls.fa-pause
-		width 10px
+		
+	i
+		color #909090
 
 	.sanz_audio_controls.volume
-		width 20px
+		cursor pointer
+
+	.sanz_audio_controls.volume
+		width 35px
+		margin-right 10px
+		text-align center
+
+		i
+			margin 0
 
 	.sanz_audio_time, .sanz_audio_controls
 		margin auto
-
-	.fa:not(.fa-play):not(.fa-pause)
-		font-size 20px
 
 	.sanz_audio_controls
 		&.volume_control, &.progress

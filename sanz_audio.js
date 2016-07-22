@@ -4,7 +4,7 @@
      * @desc This small plugins creates a new audio element
      *       from the original but much more customizable.
      *
-     * @version 0.0.7
+     * @version 0.1.0
      */
 
 	var utils = {
@@ -75,12 +75,12 @@
 		function initSanzPlayer() {
 			// Prepare and render the new Player
 			var newHtml  = '<div class="sanz_audio">';
-			newHtml += '<i class="sanz_audio_controls fa fa-play"></i>';
+			newHtml += '<div class="sanz_audio_controls play-pause"><i class="icono-play"></i></div>';
 			newHtml += '<div class="sanz_audio_controls progress"><span class="sanz_audio_controls progress_control"></span></div>';
 			newHtml += '<div class="sanz_audio_time">00:00</div>';
 
 			if(options.audioControl) {
-				newHtml += '<div class="sanz_audio_controls volume"><i class="fa fa-volume-up"></i></div>';
+				newHtml += '<div class="sanz_audio_controls volume"><i class="icono-volumeHigh"></i></div>';
 				newHtml += '<div class="sanz_audio_controls volume_control"><span class="volume_control_toggler"></span></div>';
 			}
 
@@ -93,7 +93,7 @@
 			var newPlayer = player.next('.sanz_audio');
 
 			var controls = {
-				'play'        : newPlayer.find('.sanz_audio_controls.fa-play'),
+				'play'        : newPlayer.find('.sanz_audio_controls.play-pause'),
 				'timeline'    : newPlayer.find('.sanz_audio_controls.progress'),
 				'timeToggle'  : newPlayer.find('.sanz_audio_controls.progress_control'),
 				'audio'       : newPlayer.find('.sanz_audio_controls.volume_control'),
@@ -119,13 +119,14 @@
 
 			// Bind Play event
 			controls.play.on('click', function() {
+				var icon = $(this).find('i');
 				if(player.prop('paused')) {
 					player.trigger('play');
-					$(this).removeClass('fa-play').addClass('fa-pause');
+					icon.removeClass('icono-play').addClass('icono-pause');
 				}
 				else {
 					player.trigger('pause');
-					$(this).removeClass('fa-pause').addClass('fa-play');
+					icon.removeClass('icono-pause').addClass('icono-play');
 				}
 			});
 
@@ -192,7 +193,7 @@
 				if(!onPlayHead) {
 					controls.timeToggle.css('left', '0px');
 					newPlayer.find('.sanz_audio_time').html(length);
-					controls.play.removeClass('fa-pause').addClass('fa-play');
+					controls.play.removeClass('icono-pause').addClass('icono-play');
 				}
 			});
 
@@ -294,19 +295,22 @@
 
 			// Update audio icon based on volumen value
 			function updateAudioIcon(volume) {
-				var icon = '<i class="fa fa-volume-up"></i>';
+				var icon;
 
-				if(volume >= 0.5) {
-					icon = '<i class="fa fa-volume-up"></i>';
+				if(volume >= 0.7) {
+					icon = '<i class="icono-volumeHigh"></i>';
+				}
+				else if(volume >= 0.5 && volume < 0.7) {
+					icon = '<i class="icono-volumeMedium"></i>';
 				}
 				else if(volume > 0.2 && volume < 0.5) {
-					icon = '<i class="fa fa-volume-down"></i>';
+					icon = '<i class="icono-volumeLow"></i>';
 				}
 				else if(volume <= 0.2) {
-					icon = '<i class="fa fa-volume-off"></i>';
+					icon = '<i class="icono-volume"></i>';
 				}
 
-				newPlayer.find('.sanz_audio_controls.volume').find('.fa').remove();
+				newPlayer.find('.sanz_audio_controls.volume').find('i').remove();
 				newPlayer.find('.sanz_audio_controls.volume').append(icon);
 			}
 		};
