@@ -4,7 +4,7 @@
      * @desc This small plugins creates a new audio element
      *       from the original but much more customizable.
      *
-     * @version 0.0.4
+     * @version 0.0.5
      */
 
 	var utils = {
@@ -137,11 +137,11 @@
 
 			// Set default Audio from opt
 			updateAudioIcon(options.volume);
-			if(options.volume > 1) {
+			if(options.volume > 1 || options.volume == 1) {
 				player.prop('volume', 1);
 				controls.audioToggle.css('right', '0px');
 			}
-			else if(options.volume < 0) {
+			else if(options.volume < 0 || options.volume == 0) {
 				player.prop('volume', 0);
 				controls.audioToggle.css('left', '0px');
 			}
@@ -243,6 +243,22 @@
 				if (newMargLeft > timelineWidth) {
 					controls.audioToggle.css('left', timelineWidth + 'px');
 				}
+
+				// Set the volume
+				var newVolume = utils.clickPercent(e, controls.audio);
+
+				if(newVolume < 0) {
+					newVolume = 0;
+				}
+				else if(newVolume > 1) {
+					newVolume = 1;
+				}
+
+				if(newVolume >= 0 && newVolume <= 1) {
+					volume = newVolume;
+					updateAudioIcon(newVolume);
+					player.prop('volume', newVolume);
+				}
 			}
 
 			var onPlayHead = false,
@@ -271,23 +287,7 @@
 					var event = 'ontouchstart' in window ? 'touchmove' : 'mousemove';
 
 					if(touchFlag == 'audio') {
-						moveAudioAhead(e);
 						window.removeEventListener(event, moveAudioAhead, true);
-
-						var newVolume = utils.clickPercent(e, controls.audio);
-
-						if(newVolume < 0) {
-							newVolume = 0;
-						}
-						else if(newVolume > 1) {
-							newVolume = 1;
-						}
-
-						if(newVolume >= 0 && newVolume <= 1) {
-							volume = newVolume;
-							updateAudioIcon(newVolume);
-							player.prop('volume', newVolume);
-						}
 					}
 					else if(touchFlag == 'time') {
 						moveTimelineAhead(e);
