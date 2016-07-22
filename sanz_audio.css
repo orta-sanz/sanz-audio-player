@@ -2574,6 +2574,14 @@
 .sanz_audio .play-pause {
   cursor: pointer;
 }
+.sanz_audio .icono-play {
+  border-width: 9px 0 9px 15px;
+}
+.sanz_audio .icono-pause {
+  height: 17px;
+  -webkit-box-shadow: inset 0 0 0 32px, 10px 0 0 0;
+  box-shadow: inset 0 0 0 32px, 10px 0 0 0;
+}
 .sanz_audio i {
   color: #909090;
 }
@@ -2587,6 +2595,7 @@
 }
 .sanz_audio .sanz_audio_controls.volume i {
   margin: 0;
+  padding: 4px 3px;
 }
 .sanz_audio .sanz_audio_time,
 .sanz_audio .sanz_audio_controls {

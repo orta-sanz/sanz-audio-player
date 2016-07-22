@@ -4,7 +4,7 @@
      * @desc This small plugins creates a new audio element
      *       from the original but much more customizable.
      *
-     * @version 0.1.0
+     * @version 0.1.1
      */
 
 	var utils = {
