@@ -4,7 +4,7 @@
      * @desc This small plugins creates a new audio element
      *       from the original but much more customizable.
      *
-     * @version 0.0.5
+     * @version 0.0.7
      */
 
 	var utils = {
@@ -101,6 +101,10 @@
 				'audioIcon'   : newPlayer.find('.sanz_audio_controls.volume')
 			};
 
+			// Varibles for Drag and Drop
+			var onPlayHead = false,
+				touchFlag  = null;
+
 			// Append the total duration of the audio
 			var length = utils.getParsedLength(duration);
 			duration && newPlayer.find('.sanz_audio_time').html(length);
@@ -185,9 +189,11 @@
 
 			// On End event
 			player.on('ended', function() {
-				controls.timeToggle.css('left', '0px');
-				newPlayer.find('.sanz_audio_time').html(length);
-				controls.play.removeClass('fa-pause').addClass('fa-play');
+				if(!onPlayHead) {
+					controls.timeToggle.css('left', '0px');
+					newPlayer.find('.sanz_audio_time').html(length);
+					controls.play.removeClass('fa-pause').addClass('fa-play');
+				}
 			});
 
 			// Makes timeline and audio draggable
@@ -227,6 +233,8 @@
 				if (newMargLeft > timelineWidth) {
 					controls.timeToggle.css('left', timelineWidth + 'px');
 				}
+
+				player.prop('currentTime', duration * utils.clickPercent(e, controls.timeline));
 			}
 
 			// Moves the audio line as user drags
@@ -247,22 +255,13 @@
 				// Set the volume
 				var newVolume = utils.clickPercent(e, controls.audio);
 
-				if(newVolume < 0) {
-					newVolume = 0;
-				}
-				else if(newVolume > 1) {
-					newVolume = 1;
+				if(newVolume < 0 || newVolume > 1) {
+					newVolume = newVolume > 1 ? 1 : 0;
 				}
 
-				if(newVolume >= 0 && newVolume <= 1) {
-					volume = newVolume;
-					updateAudioIcon(newVolume);
-					player.prop('volume', newVolume);
-				}
+				updateAudioIcon(newVolume);
+				player.prop('volume', newVolume);
 			}
-
-			var onPlayHead = false,
-				touchFlag  = null;
 
 			// Draggable functions for Audio
 			function mouseDownAudio() {
@@ -286,14 +285,8 @@
 				if (onPlayHead == true) {
 					var event = 'ontouchstart' in window ? 'touchmove' : 'mousemove';
 
-					if(touchFlag == 'audio') {
-						window.removeEventListener(event, moveAudioAhead, true);
-					}
-					else if(touchFlag == 'time') {
-						moveTimelineAhead(e);
-						window.removeEventListener(event, moveTimelineAhead, true);
-						player.prop('currentTime', duration * utils.clickPercent(e, controls.timeline));
-					}
+					touchFlag == 'audio' && window.removeEventListener(event, moveAudioAhead, true);
+					touchFlag == 'time' && window.removeEventListener(event, moveTimelineAhead, true);
 				}
 
 				onPlayHead = false;
