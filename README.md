@@ -39,6 +39,10 @@ Simple as select the audio element and call the `.sanzAudio()` function. You can
 </script>
 ```
 
+## Dev
+Use this stylus command for dev:
+`stylus --include-css -u nib sanz_audio.styl -o ../dist -w`
+
 ## ToDo
 - Better style and responsive.
 - PlayList option.

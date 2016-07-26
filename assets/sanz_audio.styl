@@ -1,6 +1,6 @@
 @import 'nib'
 
-@import '../css/icono.css'
+@import './icono.css'
 
 circle(size)
 	width unit(size, px)
@@ -64,10 +64,16 @@ circle(size)
 			width 20%
 			height 2px
 			position relative
-			background-color #EF4747
+			background-color lightness(#EF4747, 90%)
 
 		&.progress
 			width 30%
 			height 2px
 			position relative
+			background-color lightness(#EF4747, 90%)
+
+		.timeline-line
+			height 2px
+			absolute top 50% left 0
 			background-color #EF4747
+			transform translate(0, -50%)

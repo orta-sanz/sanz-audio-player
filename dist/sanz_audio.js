@@ -4,7 +4,7 @@
      * @desc This small plugins creates a new audio element
      *       from the original but much more customizable.
      *
-     * @version 0.1.1
+     * @version 0.2.0
      */
 
 	var utils = {
@@ -76,7 +76,7 @@
 			// Prepare and render the new Player
 			var newHtml  = '<div class="sanz_audio">';
 			newHtml += '<div class="sanz_audio_controls play-pause"><i class="icono-play"></i></div>';
-			newHtml += '<div class="sanz_audio_controls progress"><span class="sanz_audio_controls progress_control"></span></div>';
+			newHtml += '<div class="sanz_audio_controls progress"><span class="timeline-line"></span><span class="sanz_audio_controls progress_control"></span></div>';
 			newHtml += '<div class="sanz_audio_time">00:00</div>';
 
 			if(options.audioControl) {
@@ -95,6 +95,7 @@
 			var controls = {
 				'play'        : newPlayer.find('.sanz_audio_controls.play-pause'),
 				'timeline'    : newPlayer.find('.sanz_audio_controls.progress'),
+				'timedraw'    : newPlayer.find('.timeline-line'),
 				'timeToggle'  : newPlayer.find('.sanz_audio_controls.progress_control'),
 				'audio'       : newPlayer.find('.sanz_audio_controls.volume_control'),
 				'audioToggle' : newPlayer.find('.sanz_audio_controls .volume_control_toggler'),
@@ -227,11 +228,14 @@
 
 				if (newMargLeft >= 0 && newMargLeft <= timelineWidth) {
 					controls.timeToggle.css('left', newMargLeft + 'px');
+					controls.timedraw.css('width', newMargLeft + 'px');
 				}
 				if (newMargLeft < 0) {
+					controls.timedraw.css('width', '0px');
 					controls.timeToggle.css('left', '0px');
 				}
 				if (newMargLeft > timelineWidth) {
+					controls.timedraw.css('width', '100%');
 					controls.timeToggle.css('left', timelineWidth + 'px');
 				}
 

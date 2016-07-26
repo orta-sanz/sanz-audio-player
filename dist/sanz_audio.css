@@ -2634,11 +2634,23 @@
   width: 20%;
   height: 2px;
   position: relative;
-  background-color: #ef4747;
+  background-color: #fbd0d0;
 }
 .sanz_audio .sanz_audio_controls.progress {
   width: 30%;
   height: 2px;
   position: relative;
+  background-color: #fbd0d0;
+}
+.sanz_audio .sanz_audio_controls .timeline-line {
+  height: 2px;
+  position: absolute;
+  top: 50%;
+  left: 0;
   background-color: #ef4747;
+  -webkit-transform: translate(0, -50%);
+  -moz-transform: translate(0, -50%);
+  -o-transform: translate(0, -50%);
+  -ms-transform: translate(0, -50%);
+  transform: translate(0, -50%);
 }
