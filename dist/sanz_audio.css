@@ -2642,7 +2642,8 @@
   position: relative;
   background-color: #fbd0d0;
 }
-.sanz_audio .sanz_audio_controls .timeline-line {
+.sanz_audio .sanz_audio_controls .timeline-line,
+.sanz_audio .sanz_audio_controls .volume-line {
   height: 2px;
   position: absolute;
   top: 50%;
@@ -2653,4 +2654,7 @@
   -o-transform: translate(0, -50%);
   -ms-transform: translate(0, -50%);
   transform: translate(0, -50%);
+}
+.sanz_audio .sanz_audio_controls .volume-line {
+  width: 100%;
 }

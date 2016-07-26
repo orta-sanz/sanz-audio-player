@@ -4,7 +4,7 @@
      * @desc This small plugins creates a new audio element
      *       from the original but much more customizable.
      *
-     * @version 0.2.0
+     * @version 0.2.1
      */
 
 	var utils = {
@@ -81,7 +81,7 @@
 
 			if(options.audioControl) {
 				newHtml += '<div class="sanz_audio_controls volume"><i class="icono-volumeHigh"></i></div>';
-				newHtml += '<div class="sanz_audio_controls volume_control"><span class="volume_control_toggler"></span></div>';
+				newHtml += '<div class="sanz_audio_controls volume_control"><span class="volume-line"></span><span class="volume_control_toggler"></span></div>';
 			}
 
 			newHtml += '</div>';
@@ -98,6 +98,7 @@
 				'timedraw'    : newPlayer.find('.timeline-line'),
 				'timeToggle'  : newPlayer.find('.sanz_audio_controls.progress_control'),
 				'audio'       : newPlayer.find('.sanz_audio_controls.volume_control'),
+				'audiodraw'   : newPlayer.find('.volume-line'),
 				'audioToggle' : newPlayer.find('.sanz_audio_controls .volume_control_toggler'),
 				'audioIcon'   : newPlayer.find('.sanz_audio_controls.volume')
 			};
@@ -163,6 +164,7 @@
 					player.prop('volume', 0);
 					volume = player.prop('volume');
 					controls.audioToggle.css('left', '0px');
+					controls.audiodraw.css('width', '0px');
 				}
 				// Restore the last volume before mute
 				else {
@@ -170,6 +172,7 @@
 						volume = 1;
 						player.prop('volume', 1);
 						controls.audioToggle.css('left', '');
+						controls.audiodraw.css('width', '100%');
 						controls.audioToggle.css('right', '0px');
 					}
 					else {
@@ -178,10 +181,12 @@
 						var width = controls.audio.width() * volume / 1;
 						if(width > controls.audio.width() || volume == 1) {
 							controls.audioToggle.css('left', '');
+							controls.audiodraw.css('width', '100%');
 							controls.audioToggle.css('right', '0px');
 						}
 						else {
 							controls.audioToggle.css('left', width + 'px');
+							controls.audiodraw.css('width', width + 'px');
 						}
 					}
 				}
@@ -249,11 +254,14 @@
 
 				if (newMargLeft >= 0 && newMargLeft <= timelineWidth) {
 					controls.audioToggle.css('left', newMargLeft + 'px');
+					controls.audiodraw.css('width', newMargLeft + 'px');
 				}
 				if (newMargLeft < 0) {
 					controls.audioToggle.css('left', '0px');
+					controls.audiodraw.css('width', '0px');
 				}
 				if (newMargLeft > timelineWidth) {
+					controls.audiodraw.css('width', '100%');
 					controls.audioToggle.css('left', timelineWidth + 'px');
 				}
 
