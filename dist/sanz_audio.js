@@ -4,7 +4,7 @@
      * @desc This small plugins creates a new audio element
      *       from the original but much more customizable.
      *
-     * @version 0.2.2
+     * @version 0.2.3
      */
 
 	var utils = {
@@ -119,16 +119,15 @@
 				}
 			}, 1200);
 
-			// Bind Play event
+			// Bind Play/Pause event
 			controls.play.on('click', function() {
-				var icon = $(this).find('i');
 				if(player.prop('paused')) {
 					player.trigger('play');
-					icon.removeClass('icono-play').addClass('icono-pause');
+					controls.play.find('i').removeClass('icono-play').addClass('icono-pause');
 				}
 				else {
 					player.trigger('pause');
-					icon.removeClass('icono-pause').addClass('icono-play');
+					controls.play.find('i').removeClass('icono-pause').addClass('icono-play');
 				}
 			});
 
@@ -198,9 +197,10 @@
 			// On End event
 			player.on('ended', function() {
 				if(!onPlayHead) {
+					controls.timedraw.css('width', '0px');
 					controls.timeToggle.css('left', '0px');
 					newPlayer.find('.sanz_audio_time').html(length);
-					controls.play.removeClass('icono-pause').addClass('icono-play');
+					controls.play.find('i').removeClass('icono-pause').addClass('icono-play');
 				}
 			});
 
