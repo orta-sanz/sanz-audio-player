@@ -8,6 +8,7 @@ circle(size)
 	border-radius unit(size / 2, px)
 
 .sanz_audio
+	height 30px
 	width 300px
 	display flex
 	user-select none
@@ -18,7 +19,11 @@ circle(size)
 		user-select none
 
 	.play-pause
+		width 15px
 		cursor pointer
+
+		i
+			margin 0
 
 	.icono-play
 		border-width 9px 0 9px 15px
@@ -34,8 +39,6 @@ circle(size)
 		cursor pointer
 
 	.sanz_audio_controls.volume
-		width 35px
-		margin-right 10px
 		text-align center
 
 		i
@@ -63,6 +66,7 @@ circle(size)
 		&.volume_control
 			width 20%
 			height 2px
+			margin-left 20px
 			position relative
 			background-color lightness(#EF4747, 90%)
 

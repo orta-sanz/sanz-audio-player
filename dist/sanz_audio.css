@@ -2538,6 +2538,7 @@
   box-sizing: border-box;
 }
 .sanz_audio {
+  height: 30px;
   width: 300px;
   display: -webkit-box;
   display: -moz-box;
@@ -2572,7 +2573,11 @@
   user-select: none;
 }
 .sanz_audio .play-pause {
+  width: 15px;
   cursor: pointer;
+}
+.sanz_audio .play-pause i {
+  margin: 0;
 }
 .sanz_audio .icono-play {
   border-width: 9px 0 9px 15px;
@@ -2589,8 +2594,6 @@
   cursor: pointer;
 }
 .sanz_audio .sanz_audio_controls.volume {
-  width: 35px;
-  margin-right: 10px;
   text-align: center;
 }
 .sanz_audio .sanz_audio_controls.volume i {
@@ -2633,6 +2636,7 @@
 .sanz_audio .sanz_audio_controls.volume_control {
   width: 20%;
   height: 2px;
+  margin-left: 20px;
   position: relative;
   background-color: #fbd0d0;
 }
