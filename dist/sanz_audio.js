@@ -4,7 +4,7 @@
      * @desc This small plugins creates a new audio element
      *       from the original but much more customizable.
      *
-     * @version 0.2.1
+     * @version 0.2.2
      */
 
 	var utils = {
@@ -139,7 +139,8 @@
 				newPlayer.find('.sanz_audio_time').html(newLength);
 
 				var percentage = Math.floor(100 * player.prop('currentTime') / duration);
-				controls.timeToggle.css('left', percentage + '%')
+				controls.timeToggle.css('left', percentage + '%');
+				controls.timedraw.css('width', percentage + '%');
 			});
 
 			// Set default Audio from opt
